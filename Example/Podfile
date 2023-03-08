@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'cocodemo_Example' do
+  pod 'cocodemo', :path => '../'
+
+  target 'cocodemo_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

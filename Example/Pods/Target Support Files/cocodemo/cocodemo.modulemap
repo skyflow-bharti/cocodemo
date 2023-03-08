@@ -1,0 +1,6 @@
+framework module cocodemo {
+  umbrella header "cocodemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

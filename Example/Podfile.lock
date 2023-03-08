@@ -1,0 +1,16 @@
+PODS:
+  - cocodemo (0.1.0)
+
+DEPENDENCIES:
+  - cocodemo (from `../`)
+
+EXTERNAL SOURCES:
+  cocodemo:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  cocodemo: 8a85c8d7ba9437779fe677ffa5f99690e2da3910
+
+PODFILE CHECKSUM: f753b67dc973a84c920fb17a28233f03e58d4df2
+
+COCOAPODS: 1.11.3
