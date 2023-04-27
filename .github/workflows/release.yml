@@ -16,13 +16,11 @@ jobs:
     - name: Get the current tag
       id: check_step
       run: |
-        tag_name=$(echo "${{ github.ref }}" | sed 's/refs\/tags\///')
-        commit_hash=$(git rev-list --parents -n 1 "${tag_name}" | awk '{print $2}')
-        branch_name=$(git branch --contains "${commit_hash}" | grep -v "detached HEAD" | head -1 | awk '{print $NF}')
-        echo "Branch name: ${branch_name}"
-        branch=${branch_name}
-        echo "::set-output name=branch::$branch"
-        echo "Branch is $branch."
+        raw=$(git branch -r --contains ${{ github.ref }})
+        branch=${raw##*/}
+        beta_branch="beta-release/$branch"
+        echo "::set-output name=branch::$beta_branch"
+        echo "Branch is $beta_branch."
       
     - name: Get Previous tag
       id: previoustag
