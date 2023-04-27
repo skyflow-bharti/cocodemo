@@ -40,7 +40,7 @@ jobs:
            git branch -f ${{ steps.check_step.outputs.branch }} origin/${{ steps.check_step.outputs.branch }}
            git checkout ${{ steps.check_step.outputs.branch }}
            git add cocodemo.podspec
-           git commit -m "[AUTOMATED] Beta Release ${{ steps.check_step.outputs.branch }}"
+           git commit -m "[AUTOMATED] Beta Release $${{ steps.previoustag.outputs.tag }}"
            git push origin ${{ steps.check_step.outputs.branch }}
     
     - name: Deploy to Cocoapods
