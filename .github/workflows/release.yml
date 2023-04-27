@@ -19,7 +19,7 @@ jobs:
         raw=$(git branch -r --contains ${{ github.ref }})
         branch=${raw/origin\/}
         echo ::set-env name=BRANCH::$branch
-     - run: echo ${{ env.BRANCH }}
+    - run: echo ${{ env.BRANCH }}
       
     - name: Get Previous tag
       id: previoustag
