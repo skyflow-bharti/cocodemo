@@ -15,8 +15,11 @@ jobs:
 
     - name: Extract branch name
       shell: bash
-      run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_OUTPUT
-      id: extract_branch    
+      run: |
+        raw=$(git branch -r --contains ${{ github.ref }})
+        branch=${raw/origin\/}
+        echo ::set-env name=BRANCH::$branch
+     - run: echo ${{ env.BRANCH }}
       
     - name: Get Previous tag
       id: previoustag
@@ -33,11 +36,11 @@ jobs:
       run: |
            git config user.name ${{ github.actor }}
            git config user.email ${{ github.actor }}@users.noreply.github.com
-           git branch -f ${{ steps.extract_branch.outputs.branch }} origin/${{ steps.extract_branch.outputs.branch }}
-           git checkout steps.extract_branch.outputs.branch
+           git branch -f ${{ env.BRANCH }} origin/${{ env.BRANCH }}
+           git checkout ${{ env.BRANCH }}
            git add cocodemo.podspec
-           git commit -m "[AUTOMATED] Beta Release ${{ steps.extract_branch.outputs.branch }}"
-           git push origin ${{ steps.extract_branch.outputs.branch }}
+           git commit -m "[AUTOMATED] Beta Release ${{ env.BRANCH }}"
+           git push origin ${{ env.BRANCH }}
     
     - name: Deploy to Cocoapods
       run: |
