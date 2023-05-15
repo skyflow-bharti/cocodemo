@@ -2,7 +2,7 @@ import Foundation
 
 public class FetchDetails {
     
-    func printDetails() {
+    public func printDetails() {
         print(FetchMetrices().getDeviceDetails())
     }
     
