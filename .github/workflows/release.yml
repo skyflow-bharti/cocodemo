@@ -41,9 +41,17 @@ jobs:
            git checkout ${{ steps.check_step.outputs.branch }}
            git add cocodemo.podspec 
            git add cocodemo/Classes/Version.swift
-           git commit -m "[AUTOMATED] Beta Release $${{ steps.previoustag.outputs.tag }}"
+           git commit -m "[AUTOMATED] Beta Release ${{ steps.previoustag.outputs.tag }}"
+           git tag -f ${{ steps.previoustag.outputs.tag }}
            git push origin ${{ steps.check_step.outputs.branch }}
-    
+           git push origin -f ${{ steps.previoustag.outputs.tag }}
+
+    - name: commit in latest tag
+      run: |
+           git tag -f ${{ steps.previoustag.outputs.tag }}
+           git push
+           git push origin -f ${{ steps.previoustag.outputs.tag }}
+
     - name: Deploy to Cocoapods
       run: |
            set -eo pipefail
