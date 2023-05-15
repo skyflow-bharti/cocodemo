@@ -39,7 +39,8 @@ jobs:
            git config user.email ${{ github.actor }}@users.noreply.github.com
            git branch -f ${{ steps.check_step.outputs.branch }} origin/${{ steps.check_step.outputs.branch }}
            git checkout ${{ steps.check_step.outputs.branch }}
-           git add cocodemo.podspec
+           git add cocodemo.podspec 
+           git add cocodemo/Classes/Version.swift
            git commit -m "[AUTOMATED] Beta Release $${{ steps.previoustag.outputs.tag }}"
            git push origin ${{ steps.check_step.outputs.branch }}
     
