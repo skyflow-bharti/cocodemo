@@ -4,7 +4,6 @@ on:
   push:
     tags: '*.*.*-beta.*'
 
-
 jobs:
   deploy_private_pod:
     runs-on: macOS-latest
@@ -12,8 +11,16 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-        ref: main
         token: ${{ secrets.PAT_ACTIONS }}
+
+    - name: Get the current branch
+      id: check_step
+      run: |
+        raw=$(git branch -r --contains ${{ github.ref }})
+        branch=${raw##*/}
+        beta_branch="beta-release/$branch"
+        echo "::set-output name=branch::$beta_branch"
+        echo "Branch is $beta_branch."
       
     - name: Get Previous tag
       id: previoustag
@@ -30,10 +37,21 @@ jobs:
       run: |
            git config user.name ${{ github.actor }}
            git config user.email ${{ github.actor }}@users.noreply.github.com
-           git add cocodemo.podspec
+           git branch -f ${{ steps.check_step.outputs.branch }} origin/${{ steps.check_step.outputs.branch }}
+           git checkout ${{ steps.check_step.outputs.branch }}
+           git add cocodemo.podspec 
+           git add cocodemo/Classes/Version.swift
            git commit -m "[AUTOMATED] Beta Release ${{ steps.previoustag.outputs.tag }}"
-           git push origin
-    
+           git tag -f ${{ steps.previoustag.outputs.tag }}
+           git push origin ${{ steps.check_step.outputs.branch }}
+           git push origin -f ${{ steps.previoustag.outputs.tag }}
+
+    - name: commit in latest tag
+      run: |
+           git tag -f ${{ steps.previoustag.outputs.tag }}
+           git push
+           git push origin -f ${{ steps.previoustag.outputs.tag }}
+
     - name: Deploy to Cocoapods
       run: |
            set -eo pipefail
