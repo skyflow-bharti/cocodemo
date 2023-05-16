@@ -12,6 +12,7 @@ internal class FetchMetrices {
         let deviceDetails = [
             "device": deviceName,
             "os_details": systemName + "@" + systemVersion,
+            "sdk_name_version": "skyflow-iOS-sdk@" + SDK_VERSION
         ]
         print("sdk version is get", SDK_VERSION)
         return deviceDetails
@@ -19,7 +20,7 @@ internal class FetchMetrices {
     internal func getMetrices() -> [String: Any]{
         let details = getDeviceDetails()
         let deviceDetails = [
-            "sdk_name_version": "skyflow-iOS-sdk@" + SDK_VERSION,
+            "sdk_name_version": deviceDetails["sdk_name_version"],
             "sdk_client_device_model": details["device"],
             "sdk_client_os_detail": details["os_details"],
         ]

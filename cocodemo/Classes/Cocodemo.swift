@@ -6,7 +6,8 @@ public class FetchDetails {
 
     }
     public func printDetails() {
-        print(FetchMetrices().getDeviceDetails())
+        let details = FetchMetrices().getMetrices()
+        print("final details", details)
     }
     
 }
