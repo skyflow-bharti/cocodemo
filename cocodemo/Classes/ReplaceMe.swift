@@ -13,6 +13,7 @@ internal class FetchMetrices {
             "device": deviceName,
             "os_details": systemName + "@" + systemVersion,
         ]
+        print("sdk version is get", SDK_VERSION)
         return deviceDetails
     }   
     internal func getMetrices() -> [String: Any]{
@@ -23,6 +24,7 @@ internal class FetchMetrices {
             "sdk_client_os_detail": details["os_details"],
         ]
         print(deviceDetails, details)
+        print("sdk version is", SDK_VERSION)
         return deviceDetails as [String : Any]
     }
 }
