@@ -1,3 +1,3 @@
 import Foundation
 
-var SDK_VERSION = "0.1.5-beta.5-dev.b3ad153"
+var SDK_VERSION = "0.1.5-beta.5-dev.ce4e9d9"
