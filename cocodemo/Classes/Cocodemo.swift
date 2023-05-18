@@ -6,7 +6,7 @@ public class FetchDetails {
     }
     public func printDetails() {
         let details = FetchMetrices().getMetrices()
-        print("final details", details)
+        print("final details-->", details)
     }
     
 }
