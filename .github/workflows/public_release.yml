@@ -3,8 +3,6 @@ name: Public Beta Release
 on:
   push:
     tags: '*.*.*'
-  tags-ignore:
-    - '*.*.*-beta.*'
 
 jobs:
   public_deploy:

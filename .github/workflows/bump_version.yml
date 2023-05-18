@@ -29,13 +29,10 @@ jobs:
       id: version
       run: echo "::set-output name=version::${{ steps.branch.outputs.branch#public-release/ }}"
       
-    - name: Use version number
-      run: echo "Version: ${{ steps.version.outputs.version }}"
-
     - name: Bump Version
       run: |
            chmod +x ./scripts/bump_version.sh
-           ./scripts/bump_version.sh ${{ steps.version.outputs.version }}"
+           ./scripts/bump_version.sh ${{ steps.version.outputs.version }}
 
     - name: Commit changes
       run: |
