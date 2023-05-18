@@ -42,9 +42,9 @@ jobs:
            git add cocodemo.podspec 
            git add cocodemo/Classes/Version.swift
            git commit -m "[AUTOMATED] Beta Release ${{ steps.previoustag.outputs.tag }}"
-           git tag -f ${{ steps.previoustag.outputs.tag }}
+           git tag ${{ steps.previoustag.outputs.tag }}
            git push origin ${{ steps.check_step.outputs.branch }}
-           git push origin -f ${{ steps.previoustag.outputs.tag }}
+           git push origin ${{ steps.previoustag.outputs.tag }}
 
     - name: commit in latest tag
       run: |
