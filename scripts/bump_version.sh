@@ -6,7 +6,7 @@ then
 
     sed -E "s/s.version .+/s.version      = \"$SEMVER\"/g" "./cocodemo.podspec" > tempfile
     sed -E "s/source .+/source       = { :git => \"https:\/\/github.com\/skyflow-bharti\/cocodemo.git\", :tag => \"$1\" }/g" tempfile > ./cocodemo.podspec && rm -f tempfile
-    awk -v semver="$SEMVER" '{gsub(/var SDK_VERSION = ".+"/, "var SDK_VERSION = \"" semver "\"")}1' "./cocodemo/Classes/Version.swift" > tempfile && mv tempfile "./cocodemo/Classes/Version.swift"
+	sed -E "s/var SDK_VERSION = .+/var SDK_VERSION = \"$SEMVER\"/g" ./cocodemo/Classes/Version.swift > tempfile && cat tempfile > ./cocodemo/Classes/Version.swift && rm -f tempfile
 
     echo --------------------------
     echo "Done, Pod now at v$1"
@@ -15,7 +15,7 @@ else
 
     sed -E "s/s.version .+/s.version      = \"$SEMVER-dev.$2\"/g" "./cocodemo.podspec" > tempfile
     sed -E "s/source .+/source       = { :git => \"https:\/\/github.com\/skyflow-bharti\/cocodemo.git\", :commit => \"$2\" }/g" tempfile > ./cocodemo.podspec && rm -f tempfile
-    awk -v semver="\"$SEMVER-dev.$2\"/g" '{gsub(/var SDK_VERSION = ".+"/, "var SDK_VERSION = \"" semver "\"")}1' "./cocodemo/Classes/Version.swift" > tempfile && mv tempfile "./cocodemo/Classes/Version.swift"
+	sed -E "s/var SDK_VERSION = .+/var SDK_VERSION = \"$SEMVER-dev.$2\"/g" ./cocodemo/Classes/Version.swift > tempfile && cat tempfile > ./cocodemo/Classes/Version.swift && rm -f tempfile
 
     echo --------------------------
     echo "Done, Pod now at v$1-dev.$2"

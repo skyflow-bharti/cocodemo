@@ -40,12 +40,6 @@ jobs:
            git commit -m "[AUTOMATED] Private Release ${{ steps.previoustag.outputs.tag }}.$(git rev-parse --short $GITHUB_SHA)"
            git push origin
 
-          
-    - name: Add SSH key to Agent
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_ACTIONS }}
-
     - name: Push updated spec file
       run: |
            pod repo add private_spec https://github.com/skyflow-bharti/cocodemo-private-spec.git
