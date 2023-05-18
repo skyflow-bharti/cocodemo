@@ -24,11 +24,14 @@ jobs:
     - name: Fetch branch name
       id: branch
       run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
-      
+
     - name: Extract version number
       id: version
-      run: echo "::set-output name=version::${{ steps.branch.outputs.branch#public-release/ }}"
-      
+      run: |
+        version=${{ steps.branch.outputs.branch }}
+        version=${version#public-release/}
+        echo "::set-output name=version::$version"
+
     - name: Bump Version
       run: |
            chmod +x ./scripts/bump_version.sh
