@@ -8,6 +8,7 @@ on:
     paths-ignore:
       - 'cocodemo.podspec'
       - '*.md'
+      - 'cocodemo/Classes/Version.swift'
     branches: 
       - release/*
 
@@ -42,6 +43,6 @@ jobs:
 
     - name: Push updated spec file
       run: |
-           pod repo add private_spec https://github.com/skyflow-bharti/cocodemo-private-spec.git
+           pod repo add private_spec git@github.com:skyflowapi/skyflow-iOS-private-spec.git
            pod repo push private_spec ./cocodemo.podspec --allow-warnings
            echo "Published as Private pod"
