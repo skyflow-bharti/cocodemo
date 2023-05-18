@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'cocodemo'
 
-  s.version      = "0.1.5-beta.5-dev.0a6c977"
+  s.version      = "0.1.5-beta.5-dev.128bd63"
 
   s.summary          = 'A short description of cocodemo.'
 
@@ -28,7 +28,7 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'bharti' => 'bharti.sagar@skyflow.com' }
 
-  s.source       = { :git => "https://github.com/skyflow-bharti/cocodemo.git", :commit => "0a6c977" }
+  s.source       = { :git => "https://github.com/skyflow-bharti/cocodemo.git", :commit => "128bd63" }
 
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
