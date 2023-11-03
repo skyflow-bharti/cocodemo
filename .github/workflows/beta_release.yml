@@ -10,8 +10,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
+        ref: ${{ github.ref_name }}
         fetch-depth: 0
         token: ${{ secrets.PAT_ACTIONS }}
+      run: echo ${{ github.ref_name }}
       
     - name: Get Previous tag
       id: previoustag
