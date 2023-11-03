@@ -13,8 +13,7 @@ jobs:
         ref: ${{ github.ref_name }}
         fetch-depth: 0
         token: ${{ secrets.PAT_ACTIONS }}
-      run: echo ${{ github.ref_name }}
-      
+        
     - name: Get Previous tag
       id: previoustag
       uses: WyriHaximus/github-action-get-previous-tag@v1
