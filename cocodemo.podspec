@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'cocodemo'
 
-  s.version      =  "1.3.0"
+  s.version      =  "1.4.0"
 
   s.summary          = 'A short description of cocodemo.'
 
@@ -28,7 +28,7 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'bharti' => 'bharti.sagar@skyflow.com' }
 
-  s.source       = { :git => "https://github.com/skyflow-bharti/cocodemo.git", :tag => "1.3.0" }
+  s.source       = { :git => "https://github.com/skyflow-bharti/cocodemo.git", :tag => "1.4.0" }
 
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -42,5 +42,5 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency "AEXML", "4.6.1"
 end
